@@ -1,0 +1,24 @@
+﻿<Properties StartupItem="FropCorn/FropCorn.iOS/FropCorn.iOS.csproj">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FropCorn/FropCorn/Services/VideoService.cs">
+    <Files>
+      <File FileName="FropCorn/FropCorn/DB/ISQLiteDB.cs" Line="8" Column="4" />
+      <File FileName="FropCorn/FropCorn.iOS/DB/SQLite_iOS.cs" Line="44" Column="1" />
+      <File FileName="FropCorn/FropCorn/View/SearchPage.xaml.cs" Line="12" Column="4" />
+      <File FileName="FropCorn/FropCorn/ViewModel/VideoAppViewModel.cs" Line="10" Column="3" />
+      <File FileName="FropCorn/FropCorn/View/SearchPage.xaml" Line="8" Column="100" />
+      <File FileName="FropCorn/FropCorn/DB/Interfaces/IVideosBusiness.cs" Line="15" Column="30" />
+      <File FileName="FropCorn/FropCorn/DB/FropcornDB.cs" Line="12" Column="68" />
+      <File FileName="FropCorn/FropCorn/ViewModel/VideosViewModel.cs" Line="30" Column="3" />
+      <File FileName="FropCorn/FropCorn/Model/Video.cs" Line="2" Column="1" />
+      <File FileName="FropCorn/FropCorn/DB/Business/VideoBusiness.cs" Line="21" Column="32" />
+      <File FileName="FropCorn/FropCorn/Helper/VideoConvertHelper.cs" Line="12" Column="2" />
+      <File FileName="FropCorn/FropCorn/Services/VideoService.cs" Line="30" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.FropCorn.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.627927EE-6C12-4724-A7C7-754F3E541D62" />
+</Properties>

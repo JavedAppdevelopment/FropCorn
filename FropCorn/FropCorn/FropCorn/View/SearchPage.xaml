@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="FropCorn.Views.SearchPage">
+	<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+		<Picker x:Name="pickerVideoApp" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+		</Picker>
+		<SearchBar x:Name="videoSearchBar" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" TextColor="Black" Placeholder="Search">
+		</SearchBar>
+		<Label x:Name="lblMsg" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" TextColor="Black" Text="Data Not Found." XAlign="Center" IsVisible="false" />
+		<ListView x:Name="lstVideos" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" ItemsSource="{Binding VideosViewModel}">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<TextCell Text="{Binding Title}" Detail="{Binding Language}">
+					</TextCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+	</StackLayout>
+</ContentPage>

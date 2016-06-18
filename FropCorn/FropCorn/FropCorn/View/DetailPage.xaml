@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="FropCorn.DetailPage">
+	<ContentPage.Content>
+	</ContentPage.Content>
+	<ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Orientation="Vertical" Padding="10">
+		<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+			<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" Orientation="Horizontal">
+				<Label HorizontalOptions="FillAndExpand" Text="Title" FontAttributes="Bold" FontSize="18">
+				</Label>
+				<Label HorizontalOptions="FillAndExpand" Text="{Binding Title}" FontSize="18">
+				</Label>
+			</StackLayout>
+			<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" Orientation="Horizontal">
+				<Label HorizontalOptions="FillAndExpand" Text="Language" FontAttributes="Bold" FontSize="18">
+				</Label>
+				<Label HorizontalOptions="FillAndExpand" Text="{Binding Language}" FontSize="18">
+				</Label>
+			</StackLayout>
+			<Label HorizontalOptions="FillAndExpand" Text="Cast" FontSize="18" FontAttributes="Bold">
+			</Label>
+			<StackLayout x:Name="castStack" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Padding="10,5,5,5">
+			</StackLayout>
+			<Label HorizontalOptions="FillAndExpand" Text="Characters" FontSize="18" FontAttributes="Bold">
+			</Label>
+			<StackLayout x:Name="characterStack" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Padding="10,5,5,5">
+			</StackLayout>
+			<Label HorizontalOptions="FillAndExpand" Text="Keywords" FontSize="18" FontAttributes="Bold">
+			</Label>
+			<StackLayout x:Name="keywordStack" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Padding="10,5,5,5">
+			</StackLayout>
+		</StackLayout>
+	</ScrollView>
+</ContentPage>
