@@ -1,33 +1,58 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="FropCorn.DetailPage">
-	<ContentPage.Content>
-	</ContentPage.Content>
-	<ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Orientation="Vertical" Padding="10">
-		<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-			<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" Orientation="Horizontal">
-				<Label HorizontalOptions="FillAndExpand" Text="Title" FontAttributes="Bold" FontSize="18">
-				</Label>
-				<Label HorizontalOptions="FillAndExpand" Text="{Binding Title}" FontSize="18">
-				</Label>
-			</StackLayout>
-			<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" Orientation="Horizontal">
-				<Label HorizontalOptions="FillAndExpand" Text="Language" FontAttributes="Bold" FontSize="18">
-				</Label>
-				<Label HorizontalOptions="FillAndExpand" Text="{Binding Language}" FontSize="18">
-				</Label>
-			</StackLayout>
-			<Label HorizontalOptions="FillAndExpand" Text="Cast" FontSize="18" FontAttributes="Bold">
-			</Label>
-			<StackLayout x:Name="castStack" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Padding="10,5,5,5">
-			</StackLayout>
-			<Label HorizontalOptions="FillAndExpand" Text="Characters" FontSize="18" FontAttributes="Bold">
-			</Label>
-			<StackLayout x:Name="characterStack" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Padding="10,5,5,5">
-			</StackLayout>
-			<Label HorizontalOptions="FillAndExpand" Text="Keywords" FontSize="18" FontAttributes="Bold">
-			</Label>
-			<StackLayout x:Name="keywordStack" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Padding="10,5,5,5">
-			</StackLayout>
-		</StackLayout>
-	</ScrollView>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="FropCorn.DetailPage" Title="{Binding Title}" >
+  <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Orientation="Vertical" Padding="10" BackgroundColor="#F1F4F4">
+    <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" OutlineColor="#0000FF" BackgroundColor="White" HasShadow="True">
+      <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="12">
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" Orientation="Vertical">
+          <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+            <Image HorizontalOptions="Start" Source="Title"></Image>
+            <Label HorizontalOptions="FillAndExpand" Text="Title" FontAttributes="Bold" FontSize="18" TextColor="#0000FF">
+            </Label>
+          </StackLayout>          
+          <Label HorizontalOptions="FillAndExpand" Text="{Binding Title}" FontSize="18" TextColor="Black">
+          </Label>
+          <BoxView HeightRequest="2" HorizontalOptions="FillAndExpand" BackgroundColor="#0000FF"></BoxView>
+        </StackLayout>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" Orientation="Vertical">
+          <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+            <Image HorizontalOptions="Start" Source="language"></Image>
+            <Label HorizontalOptions="FillAndExpand" Text="Language" FontAttributes="Bold" FontSize="18" TextColor="#0000FF">
+            </Label>
+          </StackLayout>          
+          <Label HorizontalOptions="FillAndExpand" Text="{Binding Language}" FontSize="18" TextColor="Black">
+          </Label>
+          <BoxView HeightRequest="2" HorizontalOptions="FillAndExpand" BackgroundColor="#0000FF"></BoxView>
+        </StackLayout>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" Orientation="Vertical" Padding="5" Spacing="5">
+          <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+            <Image HorizontalOptions="Start" Source="cast"></Image>
+            <Label HorizontalOptions="FillAndExpand" Text="Cast" FontSize="18" FontAttributes="Bold" TextColor="#0000FF">
+            </Label>
+          </StackLayout>          
+          <StackLayout x:Name="castStack" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Padding="10,5,5,5">
+          </StackLayout>
+          <BoxView HeightRequest="2" HorizontalOptions="FillAndExpand" BackgroundColor="#0000FF"></BoxView>
+        </StackLayout>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" Padding="5" Spacing="5">
+          <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+            <Image HorizontalOptions="Start" Source="characters"></Image>
+            <Label HorizontalOptions="FillAndExpand" Text="Characters" FontSize="18" FontAttributes="Bold" TextColor="#0000FF">
+            </Label>
+          </StackLayout>
+          <StackLayout x:Name="characterStack" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Padding="10,5,5,5">
+          </StackLayout>
+          <BoxView HeightRequest="2" HorizontalOptions="FillAndExpand" BackgroundColor="#0000FF"></BoxView>
+        </StackLayout>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" Padding="5" Spacing="5">
+          <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+            <Image HorizontalOptions="Start" Source="keywords"></Image>
+            <Label HorizontalOptions="FillAndExpand" Text="Keywords" FontSize="18" FontAttributes="Bold" TextColor="#0000FF">
+            </Label>
+          </StackLayout>         
+          <StackLayout x:Name="keywordStack" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Padding="10,5,5,5">
+          </StackLayout>          
+        </StackLayout>        
+      </StackLayout>
+    </Frame>
+  </ScrollView>
 </ContentPage>

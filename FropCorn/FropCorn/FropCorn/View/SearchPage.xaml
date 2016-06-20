@@ -1,18 +1,34 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="FropCorn.Views.SearchPage">
-	<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
-		<Picker x:Name="pickerVideoApp" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
-		</Picker>
-		<SearchBar x:Name="videoSearchBar" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" TextColor="Black" Placeholder="Search">
-		</SearchBar>
-		<Label x:Name="lblMsg" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" TextColor="Black" Text="Data Not Found." XAlign="Center" IsVisible="false" />
-		<ListView x:Name="lstVideos" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" ItemsSource="{Binding VideosViewModel}">
-			<ListView.ItemTemplate>
-				<DataTemplate>
-					<TextCell Text="{Binding Title}" Detail="{Binding Language}">
-					</TextCell>
-				</DataTemplate>
-			</ListView.ItemTemplate>
-		</ListView>
-	</StackLayout>
+  <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#F1F4F4" Spacing="3" Padding="4">
+    <Frame HorizontalOptions="FillAndExpand" OutlineColor="#EDE1E1" BackgroundColor="White" HeightRequest="42" Padding="2" HasShadow="True">
+      <StackLayout HorizontalOptions="FillAndExpand" Padding="10,1">
+        <Label x:Name="lblPickerVideoApp" HorizontalOptions="FillAndExpand"  VerticalOptions="CenterAndExpand" YAlign="Center"  TextColor="Black"></Label>        
+      </StackLayout>
+    </Frame>
+    <Frame HorizontalOptions="FillAndExpand" OutlineColor="#EDE1E1" BackgroundColor="White" HeightRequest="40" Padding="2" HasShadow="True">
+      <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" Padding="2">
+        <Image HorizontalOptions="Start" HeightRequest="32" WidthRequest="32" Aspect="Fill" Source="SearchIcon_2"></Image>
+        <Entry x:Name="videoSearchBar" HorizontalOptions="FillAndExpand" TextColor="Black" BackgroundColor="White" Placeholder="Search" PlaceholderColor="Gray"></Entry>
+      </StackLayout>
+    </Frame>  
+    <Label x:Name="lblMsg" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" TextColor="Red" Text="Data Not Found." XAlign="Center" IsVisible="False" />
+    <ActivityIndicator x:Name="searchActivityIndicator" IsRunning="False" IsVisible="False" Color="Green"></ActivityIndicator>
+    <ListView x:Name="lstVideos" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ItemsSource="{Binding VideosViewModel}" HasUnevenRows="True">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout HorizontalOptions="FillAndExpand" Padding="3" BackgroundColor="Transparent">
+              <Frame HorizontalOptions="FillAndExpand" Padding="0" OutlineColor="#0000FF" BackgroundColor="White" HasShadow="True">
+                <StackLayout HorizontalOptions="FillAndExpand" Padding="4">
+                  <Label HorizontalOptions="FillAndExpand" XAlign="Start" FontSize="15" FontAttributes="Bold" Text="{Binding Title}" TextColor="Black"></Label>
+                  <Label HorizontalOptions="FillAndExpand" XAlign="Start" FontSize="12" FontAttributes="Italic" Text="{Binding Language}" TextColor="Black"></Label>
+                </StackLayout>
+              </Frame>
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </StackLayout>
 </ContentPage>

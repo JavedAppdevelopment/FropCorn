@@ -7,79 +7,102 @@ using Xamarin.Forms;
 
 namespace FropCorn.Views
 {
-	public partial class SearchPage : ContentPage
-	{
-		private string slug = "";
+    public partial class SearchPage : ContentPage
+    {
+        private string slug = "";
 
-		void PickerVideoApp_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			slug = VideoAppViewModel.GetVideoApps()[pickerVideoApp.SelectedIndex].Value;
-			BindListData();
-		}
+        void VideoSearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (e.NewTextValue.Length >= 3)
+            {
+                BindListData();
+            }
+        }
 
-		void VideoSearchBar_TextChanged(object sender, TextChangedEventArgs e)
-		{
-			if (e.NewTextValue.Length >= 3)
-			{
-				BindListData();
-			}
-		}
+        void LstVideos_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            VideosViewModel videosViewModel = (VideosViewModel)e.Item;
+            Navigation.PushAsync(new DetailPage(videosViewModel), true);
+        }
 
-		void LstVideos_ItemTapped(object sender, ItemTappedEventArgs e)
-		{
-			VideosViewModel videosViewModel = (VideosViewModel)e.Item;
-			Navigation.PushAsync(new DetailPage(videosViewModel), true);
-		}
+        public SearchPage()
+        {
+            InitializeComponent();
+            Title = "FropCorn Video search";
+            NavigationPage.SetHasNavigationBar(this, true);
+            NavigationPage.SetHasBackButton(this, false);
 
-		public SearchPage()
-		{
-			InitializeComponent();
-			Title = "FropCorn Video search";
-			NavigationPage.SetHasNavigationBar(this, true);
-			NavigationPage.SetHasBackButton(this, false);
+            TapGestureRecognizer lblVideoAppTapGesture = new TapGestureRecognizer();
+            lblVideoAppTapGesture.Tapped += LblVideoAppTapGesture_Tapped;
 
-			BindPickerData();
-			lstVideos.ItemTapped += LstVideos_ItemTapped;
-			videoSearchBar.TextChanged += VideoSearchBar_TextChanged;
-			pickerVideoApp.SelectedIndexChanged += PickerVideoApp_SelectedIndexChanged;
-		}
+            lblPickerVideoApp.GestureRecognizers.Add(lblVideoAppTapGesture);
 
-		public void BindPickerData()
-		{
-			List<KeyValuePair<string,string>> videoAppDictionary = VideoAppViewModel.GetVideoApps();
-			foreach (var videoAppItem in videoAppDictionary)
-			{
-				pickerVideoApp.Items.Add(videoAppItem.Key);
-			}
-			pickerVideoApp.SelectedIndex = 0;
-			slug = videoAppDictionary[pickerVideoApp.SelectedIndex].Value;
-			BindListData();
-		}
+            lblPickerVideoApp.Text = "Spuul";
+            slug = "spuul";
 
-		private async void BindListData()
-		{
-			try
-			{
-				VideoService videoService = new VideoService();
-				var listVideoViewModel = await videoService.GetAllVideosBySearchAsync(videoSearchBar.Text, slug);
-				if (listVideoViewModel.Count > 0)
-				{
-					lblMsg.IsVisible = false;
-					lstVideos.ItemsSource = listVideoViewModel;
-				}
-				else {
-					lblMsg.IsVisible = true;
-				}
-			}
-			catch (Exception pException)
-			{
-				System.Diagnostics.Debug.WriteLine("Exception : " + pException.Message);
-				lblMsg.IsVisible = true;
-			}
-			finally {
-				GC.Collect();
-			}
-		}
-	}
+            lstVideos.ItemTapped += LstVideos_ItemTapped;
+            videoSearchBar.TextChanged += VideoSearchBar_TextChanged;
+        }
+
+        private async void LblVideoAppTapGesture_Tapped(object sender, EventArgs e)
+        {
+            try
+            {
+                Dictionary<string, string> videoAppDictionary = VideoAppViewModel.GetVideoApps();
+                string[] videoSheetItems = new string[videoAppDictionary.Count];
+                for (int i = 0; i < videoAppDictionary.Count; i++)
+                {
+                    videoSheetItems[i] = videoAppDictionary.ElementAt(i).Key;
+                }
+                var result = await DisplayActionSheet("Select Video App", null, null, videoSheetItems);
+
+                lblPickerVideoApp.Text = result;
+                slug = videoAppDictionary[lblPickerVideoApp.Text];   
+                if(videoSearchBar.Text.Length >= 3)             
+                    BindListData();
+                else
+                {
+                    lstVideos.ItemsSource = null;
+                    lblMsg.IsVisible = true;
+                }
+            }
+            catch (Exception pException)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception : " + pException.Message + " " + pException.StackTrace);
+            }
+        }
+
+        private async void BindListData()
+        {
+            try
+            {                
+                searchActivityIndicator.IsRunning = true;
+                searchActivityIndicator.IsVisible = true;
+                VideoService videoService = new VideoService();
+                var listVideoViewModel = await videoService.GetAllVideosBySearchAsync(videoSearchBar.Text, slug);
+                if (listVideoViewModel.Count > 0)
+                {
+                    lblMsg.IsVisible = false;
+                    lstVideos.ItemsSource = listVideoViewModel;
+                }
+                else
+                {
+                    lstVideos.ItemsSource = null;
+                    lblMsg.IsVisible = true;
+                }
+            }
+            catch (Exception pException)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception : " + pException.Message);
+                lblMsg.IsVisible = true;
+            }
+            finally
+            {
+                GC.Collect();
+                searchActivityIndicator.IsRunning = false;
+                searchActivityIndicator.IsVisible = false;
+            }
+        }
+    }
 }
 

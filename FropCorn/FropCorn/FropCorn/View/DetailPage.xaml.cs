@@ -13,8 +13,7 @@ namespace FropCorn
 		{
 			InitializeComponent();
 			BindingContext = videoViewModel;
-
-			Title = "Detail";
+            			
 			NavigationPage.SetHasNavigationBar(this, true);
 			NavigationPage.SetHasBackButton(this, true);
 
