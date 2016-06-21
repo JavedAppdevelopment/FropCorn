@@ -6,11 +6,11 @@
         <Label x:Name="lblPickerVideoApp" HorizontalOptions="FillAndExpand"  VerticalOptions="CenterAndExpand" YAlign="Center"  TextColor="Black"></Label>        
       </StackLayout>
     </Frame>
-    <Frame HorizontalOptions="FillAndExpand" OutlineColor="#EDE1E1" BackgroundColor="White" HeightRequest="40" Padding="2" HasShadow="True">
-      <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" Padding="2">
-        <Image HorizontalOptions="Start" HeightRequest="32" WidthRequest="32" Aspect="Fill" Source="SearchIcon_2"></Image>
-        <Entry x:Name="videoSearchBar" HorizontalOptions="FillAndExpand" TextColor="Black" BackgroundColor="White" Placeholder="Search" PlaceholderColor="Gray"></Entry>
-      </StackLayout>
+    <Frame HorizontalOptions="FillAndExpand" OutlineColor="#EDE1E1" BackgroundColor="White" HeightRequest="40" Padding="2" HasShadow="True">      
+        <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+          <Image HorizontalOptions="Start" HeightRequest="32" WidthRequest="32" Aspect="Fill" Source="SearchIcon_2"></Image>
+          <Entry x:Name="videoSearchBar" HorizontalOptions="FillAndExpand" TextColor="Black" BackgroundColor="White" Placeholder="Search" PlaceholderColor="Gray"></Entry>
+        </StackLayout>   
     </Frame>  
     <Label x:Name="lblMsg" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" TextColor="Red" Text="Data Not Found." XAlign="Center" IsVisible="False" />
     <ActivityIndicator x:Name="searchActivityIndicator" IsRunning="False" IsVisible="False" Color="Green"></ActivityIndicator>

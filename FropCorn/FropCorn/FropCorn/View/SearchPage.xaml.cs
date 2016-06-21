@@ -4,6 +4,7 @@ using System.Linq;
 using FropCorn.Services;
 using FropCorn.ViewModel;
 using Xamarin.Forms;
+using Plugin.Connectivity;
 
 namespace FropCorn.Views
 {
@@ -13,7 +14,7 @@ namespace FropCorn.Views
 
         void VideoSearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (e.NewTextValue.Length >= 3)
+            if (e.NewTextValue.Length >= 3 && CrossConnectivity.Current.IsConnected)
             {
                 BindListData();
             }
@@ -42,6 +43,28 @@ namespace FropCorn.Views
 
             lstVideos.ItemTapped += LstVideos_ItemTapped;
             videoSearchBar.TextChanged += VideoSearchBar_TextChanged;
+
+            CrossConnectivity.Current.ConnectivityChanged += Current_ConnectivityChanged;
+        }
+
+        private void Current_ConnectivityChanged(object sender, Plugin.Connectivity.Abstractions.ConnectivityChangedEventArgs e)
+        {
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                videoSearchBar.IsEnabled = true;
+                lblMsg.IsVisible = false;
+                lblMsg.Text = "Data Not Found"; //set default message.
+                if(videoSearchBar.Text.Length >= 3)
+                {
+                    BindListData();
+                }
+            }
+            else
+            {
+                videoSearchBar.IsEnabled = false;
+                lblMsg.IsVisible = true;
+                lblMsg.Text = "Internet Connection Not Available";
+            }
         }
 
         private async void LblVideoAppTapGesture_Tapped(object sender, EventArgs e)
@@ -58,12 +81,12 @@ namespace FropCorn.Views
 
                 lblPickerVideoApp.Text = result;
                 slug = videoAppDictionary[lblPickerVideoApp.Text];   
-                if(videoSearchBar.Text.Length >= 3)             
+                if(videoSearchBar.Text.Length >= 3 && CrossConnectivity.Current.IsConnected)             
                     BindListData();
                 else
                 {
                     lstVideos.ItemsSource = null;
-                    lblMsg.IsVisible = true;
+                    lblMsg.IsVisible = true;                    
                 }
             }
             catch (Exception pException)
@@ -88,7 +111,7 @@ namespace FropCorn.Views
                 else
                 {
                     lstVideos.ItemsSource = null;
-                    lblMsg.IsVisible = true;
+                    lblMsg.IsVisible = true;                    
                 }
             }
             catch (Exception pException)
